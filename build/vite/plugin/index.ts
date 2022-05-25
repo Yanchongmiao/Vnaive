@@ -14,6 +14,8 @@ import { restart } from './restart'
 import { jsx } from './jsx'
 import { setupName } from './setupName'
 import { importImgs } from './importImgs'
+import OptimizationPersist from 'vite-plugin-optimize-persist'
+import PkgConfig from 'vite-plugin-package-config'
 export const createPlugin = (
   // eslint-disable-next-line no-undef
   viteEnv: ViteEnv,
@@ -49,5 +51,8 @@ export const createPlugin = (
   vitePlugins.push(setupName())
   // import images
   vitePlugins.push(importImgs())
+  // 优化vite首次启动慢
+  vitePlugins.push(PkgConfig())
+  vitePlugins.push(OptimizationPersist())
   return vitePlugins
 }

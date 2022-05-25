@@ -42,7 +42,22 @@ export default ({ command, mode }: ConfigEnv) => {
       ],
     },
     optimizeDeps: {
-      include: ['vue', 'pinia', 'axios'],
+      include: [
+        'vue',
+        'vue-router',
+        'pinia',
+        'pinia-plugin-persist',
+        'axios',
+        'naive-ui',
+        'nprogress',
+        '@vicons/ionicons5',
+        '@vueuse/core',
+        'default-passive-events',
+        'lodash-es',
+        'screenfull',
+        'vue-i18n',
+      ],
+      exclude: [],
     },
     build: {
       target: 'modules',
