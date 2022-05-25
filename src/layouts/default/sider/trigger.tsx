@@ -9,7 +9,7 @@ export default defineComponent({
     return () => (
       <div
         class={
-          'h-48px bg-yellow-700 flex flex-a-c justify-center cursor-pointer'
+          'h-48px bg-yellow-700 flex items-center justify-center cursor-pointer'
         }
         onClick={() => (store.siderFold = !store.siderFold)}
       >

@@ -22,7 +22,7 @@ export default defineComponent({
             }}
           >
             <NDivider title-placement="center">X主题</NDivider>
-            <div class={'flex flex-j-c'}>
+            <div class={'flex justify-center'}>
               <NSwitch
                 size="medium"
                 defaultValue={store.theme}

@@ -15,7 +15,7 @@ export default defineComponent({
       <NRow class={['h-50px', 'themeBox', 'fle', 'justify-between']}>
         {LayoutOptions.map((item) => {
           return (
-            <NCol span={5} class={['flex', 'flex-j-c']}>
+            <NCol span={5} class={['flex', 'justify-center']}>
               <NPopover
                 placement={'bottom'}
                 trigger={'hover'}

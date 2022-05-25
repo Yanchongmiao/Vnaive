@@ -2,7 +2,7 @@
   <div class="login w-1/1 h-1/1 flex">
     <div class="bg flex flex-col py-50px w-1/2">
       <div
-        class="leftHeaderText flex flex-j-c animate__animated animate__bounceInLeft w-7/10 h-3/10"
+        class="leftHeaderText flex justify-center animate__animated animate__bounceInLeft w-7/10 h-3/10"
       >
         <img :src="logo" alt="" srcset="" class="w-48px h-48px" />
         <p class="m-0 text-size-24px mt-8px ml-14px text-center text-white">
@@ -10,7 +10,7 @@
         </p>
       </div>
       <div
-        class="leftLogo flex flex-col flex-a-c flex-j-c animate__animated animate__bounceInLeft w-86/100"
+        class="leftLogo flex flex-col animate__animated animate__bounceInLeft w-86/100 justify-center items-center"
       >
         <img :src="loginBoxBg" alt="" srcset="" class="w-368px h-190px" />
         <br />

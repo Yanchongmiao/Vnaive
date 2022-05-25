@@ -9,7 +9,9 @@ export const LayoutHeader = defineComponent({
   setup() {
     const store = themeStore()
     return () => (
-      <NLayoutHeader class={[`h-${store.headerHeight}px`, 'flex', 'flex-a-c']}>
+      <NLayoutHeader
+        class={[`h-${store.headerHeight}px`, 'flex', 'items-center']}
+      >
         {store.layout > 1 ? <Logo class={'w-197px'} /> : <div></div>}
         {store.foldBtnPosition === 'top' ? <Fold /> : <div></div>}
         <div class={['flex-1']}></div>

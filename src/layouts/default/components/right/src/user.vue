@@ -9,9 +9,9 @@ export default defineComponent({
     const title = import.meta.env.VITE_APP_TITLE
     return () => (
       <>
-        <div class={'mr-14px h-1/1 flex flex-a-c cursor-pointer'}>
+        <div class={'mr-14px h-1/1 flex items-center cursor-pointer'}>
           <NDropdown options={UserOptions} class={'inp-out'}>
-            <div class={'flex flex-j-c flex-a-c  h-1/1'}>
+            <div class={'flex justify-center items-center  h-1/1'}>
               <img src={useImg} class={'w-26px h-26px rounded-1/1 mr-10px'} />
               <span class={'text-light-50'}>{title}</span>
             </div>
