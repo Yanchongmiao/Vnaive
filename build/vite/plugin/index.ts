@@ -10,12 +10,12 @@ import { icons } from './icons'
 import { html } from './html'
 import { mock } from './mock'
 import { restart } from './restart'
-// import { themePreprocessorHmrPlugin } from "@zougt/vite-plugin-theme-preprocessor"
 import { jsx } from './jsx'
 import { setupName } from './setupName'
 import { importImgs } from './importImgs'
 import OptimizationPersist from 'vite-plugin-optimize-persist'
 import PkgConfig from 'vite-plugin-package-config'
+import { autoImport } from './autoImport'
 export const createPlugin = (
   // eslint-disable-next-line no-undef
   viteEnv: ViteEnv,
@@ -29,7 +29,7 @@ export const createPlugin = (
     viteCompression(),
   ]
   // autoImport  unplugin-auto-import/vite
-  // vitePlugins.push(autoImport())
+  vitePlugins.push(autoImport())
   // componentTS  unplugin-vue-components/vite
   vitePlugins.push(componentTS())
   // theme  @zougt/vite-plugin-theme-preprocessor

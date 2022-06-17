@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios, { AxiosInstance } from 'axios'
 import { RequestOptions, resultType } from '@/type/http'
 import { Interceptors } from './interception'

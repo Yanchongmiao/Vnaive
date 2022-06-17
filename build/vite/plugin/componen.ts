@@ -1,13 +1,12 @@
 import Components from 'unplugin-vue-components/vite'
-// import { AntDesignVueResolver } from "unplugin-vue-components/resolvers"
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 export const componentTS = () => {
   return Components({
-    // resolvers: [AntDesignVueResolver()],
-    resolvers: [],
+    resolvers: [NaiveUiResolver()],
     directoryAsNamespace: true,
     extensions: ['vue'],
-    // dts: 'src/components.d.ts',
-    dts: false,
+    dts: 'src/tool/components.d.ts',
+    // dts: false,
     dirs: ['src/components'],
     deep: true,
     globalNamespaces: [],

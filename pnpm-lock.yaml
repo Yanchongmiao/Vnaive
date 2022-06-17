@@ -21,6 +21,7 @@ specifiers:
   '@vue/eslint-config-prettier': ^7.0.0
   '@vue/eslint-config-typescript': ^10.0.0
   '@vueuse/core': ^7.7.0
+  '@vueuse/head': ^0.7.6
   '@zxcvbn-ts/core': ^2.0.1
   animate.css: ^4.1.1
   autoprefixer: ^10.4.2
@@ -123,6 +124,7 @@ devDependencies:
   '@vue/babel-plugin-jsx': 1.1.1_@babel+core@7.17.7
   '@vue/eslint-config-prettier': 7.0.0_yawwklhkzo66vfwuyidurf6rry
   '@vue/eslint-config-typescript': 10.0.0_u7h7woz4ui7dmno26wmfvxdenq
+  '@vueuse/head': 0.7.6_vue@3.2.31
   cross-env: 7.0.3
   cz-customizable: 6.3.0
   eslint: 8.11.0
@@ -1344,6 +1346,14 @@ packages:
       '@vueuse/shared': 7.7.1_vue@3.2.31
       vue: 3.2.31
       vue-demi: 0.12.4_vue@3.2.31
+
+  /@vueuse/head/0.7.6_vue@3.2.31:
+    resolution: {integrity: sha512-cOWqCkT3WiF5oEpw+VVEWUJd9RLD5rc7DmnFp3cePsejp+t7686uKD9Z9ZU7Twb7R/BI8iexKTmXo9D/F3v6UA==}
+    peerDependencies:
+      vue: '>=3'
+    dependencies:
+      vue: 3.2.31
+    dev: true
 
   /@vueuse/shared/7.7.1_vue@3.2.31:
     resolution: {integrity: sha512-rN2qd22AUl7VdBxihagWyhUNHCyVk9IpvBTTfHoLH9G7rGE552X1f+zeCfehuno0zXif13jPw+icW/wn2a0rnQ==}
@@ -7423,8 +7433,8 @@ packages:
     dependencies:
       vue: 3.2.31
 
-  /vue-demi/0.12.5_vue@3.2.31:
-    resolution: {integrity: sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==}
+  /vue-demi/0.13.1_vue@3.2.31:
+    resolution: {integrity: sha512-xmkJ56koG3ptpLnpgmIzk9/4nFf4CqduSJbUM0OdPoU87NwRuZ6x49OLhjSa/fC15fV+5CbEnrxU4oyE022svg==}
     engines: {node: '>=12'}
     hasBin: true
     requiresBuild: true
@@ -7460,7 +7470,7 @@ packages:
     resolution: {integrity: sha512-283vpYOhVHJCpMkjNVEwZdgaAb+Y93zFaXGAWTI378MLoNuwQydjD/BAy1e81QYEmyA+JbxqcmMZVWcM9rbriw==}
     dependencies:
       eslint-config-vue-global-api: 0.4.1
-      vue-demi: 0.12.5_vue@3.2.31
+      vue-demi: 0.13.1_vue@3.2.31
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue

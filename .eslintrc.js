@@ -25,8 +25,10 @@ module.exports = {
     '@vue/eslint-config-prettier',
     'plugin:vue/vue3-recommended',
     'prettier',
+    './.eslintrc-auto-import.json',
   ],
   rules: {
+    'vue/no-multiple-template-root': 'off',
     'vue/script-setup-uses-vars': 'error',
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',

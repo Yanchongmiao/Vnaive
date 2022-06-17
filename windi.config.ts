@@ -1,11 +1,10 @@
 // windi.config.ts
 import { defineConfig } from 'vite-plugin-windicss'
-function range(size, startAt = 1) {
-  return Array.from(Array(size).keys()).map((i) => i + startAt)
-}
+const range = (size, startAt = 1) =>
+  Array.from(Array(size).keys()).map((i) => i + startAt)
 export default defineConfig({
   attributify: {
-    prefix: 'admin:',
+    prefix: 'wd:',
   },
   preflight: false,
   alias: {
@@ -19,5 +18,9 @@ export default defineConfig({
     include: ['src/**/*.{vue,html,jsx,tsx}'],
     exclude: ['node_modules', '.git'],
   },
-  safelist: [range(30).map((i) => `text-${i}px`)],
+  safelist: [
+    range(30).map((i) => `text-${i}px`),
+    range(30).map((i) => `m-${i}px`),
+    range(30).map((i) => `p-${i}px`),
+  ],
 })

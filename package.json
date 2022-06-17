@@ -11,6 +11,7 @@
   "scripts": {
     "bootstrap": "pnpm install || yarn install && pnpm run prepare",
     "dev": "vite",
+    "build": "vite build",
     "serve:dev": "npx --max_old_space_size=4096 vite serve --mode development",
     "serve:pro": "npx --max_old_space_size=4096 vite serve --mode production",
     "lint": "eslint --ext src/**/*.{vue,ts,tsx} --quiet",
@@ -64,6 +65,7 @@
     "@vue/babel-plugin-jsx": "^1.1.1",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^10.0.0",
+    "@vueuse/head": "^0.7.6",
     "cross-env": "^7.0.3",
     "cz-customizable": "^6.3.0",
     "eslint": "^8.10.0",
