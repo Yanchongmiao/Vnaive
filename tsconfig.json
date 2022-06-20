@@ -16,16 +16,17 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@assets": ["src/assets"],
-      "@styles": ["src/assets"],
-      "@components": ["src/components/*"],
-      "@views": ["src/views/*"],
-      "@pinia": ["src/pinia/*"],
-      "@api": ["/src/api"],
-      "@utils": ["/src/utils"],
-      "@type": ["/src/type"],
-      "@public": ["/public"]
+      "@assets/*": ["./src/assets/*"],
+      "@styles/*": ["./src/assets/*"],
+      "@components/*": ["./src/components/*"],
+      "@views/*": ["./src/views/*"],
+      "@pinia/*": ["./src/pinia/*"],
+      "@api/*": ["./src/api/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@type/*": ["./src/type/*"],
+      "@public/*": ["./public/*"]
     },
+
     "outDir": "./dist"
   },
   "include": [
