@@ -1,12 +1,11 @@
-import { axiosRequestStore } from '@/pinia/axiosRequest'
+import { mergeurlId, setPending } from '@/http/uiils'
 import { PendingType, RequestOptions } from '@/type/http'
 import axios from 'axios'
 
-export const setCancel = (request: RequestOptions, ignoreRequest: Number) => {
+export const setCancel = (request: RequestOptions, ignoreRequest: boolean) => {
   const cancelToken = axios.CancelToken
   let pendingObj: PendingType | null
-  const useStore = axiosRequestStore()
-  request.cancelToken = new cancelToken((c: Function) => {
+  request.cancelToken = new cancelToken((c) => {
     pendingObj = {
       url: request.url as string,
       method: request.method!,
@@ -18,5 +17,11 @@ export const setCancel = (request: RequestOptions, ignoreRequest: Number) => {
       id: request.requestOptions?.id,
     }
   })
-  useStore.setPending(pendingObj!)
+  let url = ''
+  if (!pendingObj!.ignoreRequest) {
+    url = mergeurlId(request.url!, request.requestOptions?.id || '')
+  } else {
+    url = request.url!
+  }
+  setPending(url, pendingObj!.method, pendingObj!)
 }

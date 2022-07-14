@@ -9,6 +9,7 @@ export const getBackRoutes = async function () {
     let {
       data: { route, allAuth },
     } = await oldbackpermissions()
+    oldbackpermissions()
     removeRoute()
     const routeStoreValue = routeStore()
     routeStoreValue.$patch({

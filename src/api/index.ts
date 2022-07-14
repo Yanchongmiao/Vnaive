@@ -2,8 +2,10 @@ import { http } from '@/http'
 export const baseUrl = '/api'
 export const permissions = () => http.post(`${baseUrl}/users/permissions`) //获取路由 菜单接口//users/permissions
 export const newpermissions = () => http.post(`${baseUrl}/users/newpermissions`) //获取路由 菜单接口//users/permissions users/
-export const oldbackpermissions = () =>
-  http.post(`${baseUrl}/users/oldbackpermissions`) //获取路由 菜单接口//users/permissions users/oldbackpermissions
+export const oldbackpermissions = (data: any, val: string) =>
+  http.post(`${baseUrl}/users/oldbackpermissions`, data, {
+    requestOptions: { ignoreMsg: val, ignoreRequest: false },
+  }) //获取路由 菜单接口//users/permissions users/oldbackpermissions
 export const newbackpermissions = () =>
   http.post(`${baseUrl}/users/newbackpermissions`) //获取路由 菜单接口//users/permissions users/oldbackpermissions
 //back 模式获取路由权限

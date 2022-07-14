@@ -51,7 +51,7 @@ export interface PendingType<T = any, P = any> {
   data?: T
   params?: P
   method: Method
-  cancel: Function
+  cancel: (msg?: string) => void
   ignoreMsg?: string
   [key: string]: any
 }

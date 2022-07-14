@@ -21,7 +21,6 @@ export const createRoutes = () => {
       roInfo = store.originalData = item
     }
   }
-  console.log(roInfo)
 
   roInfo.forEach((item: RouteType) => {
     let routeName = item.name

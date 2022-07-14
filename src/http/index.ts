@@ -33,7 +33,6 @@ const data: RequestOptions = {
   },
 }
 const createHttp = (request?: RequestOptions) => {
-  // return new Vaxios(configForm(data, request || {}))
   return new Vaxios(Object.assign(data, request))
 }
 export const http = createHttp()

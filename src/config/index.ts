@@ -16,7 +16,7 @@ export const baseHomeOpenMenu = ['/home']
 // 是否每次刷新页面都请求权限接口
 export const onLoadGetPermission = true
 // 路由模式
-export let permissionMode = RoleEnum.BACK
+export let permissionMode = RoleEnum.MOVE
 // 不添加到tabs中
 export const noAddTabs = ['redirectPath', 'redirect', '404']
 /**

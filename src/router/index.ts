@@ -35,8 +35,6 @@ export async function setRoute(app: App<Element>) {
 }
 router.beforeEach(async (to, from, next) => {
   const useStore = useProfileStore()
-
-  console.log(to)
   if (to.fullPath !== '/login' && !useStore.token) {
     next({ name: 'login' })
   }
