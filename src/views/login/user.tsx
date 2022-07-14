@@ -5,14 +5,17 @@ import Register from './register.vue'
 import Phone from './phone.vue'
 import Reset from './reset.vue'
 import { getPicValidateCode, userNameLogin } from '@/api'
+import { useProfileStore } from '@/pinia/user'
+import { baseHome } from '@/config'
 export const User = defineComponent({
   name: 'User',
   setup() {
     const formValue = reactive({
-      userName: null,
-      password: null,
-      pictureCode: null,
+      userName: 'Mm1212121',
+      password: 'aA121212a!',
+      pictureCode: 1111,
     })
+    const useStore = useProfileStore()
     const picCode = ref<string>('')
     const getPicCode = async () => {
       picCode.value = ''
@@ -22,6 +25,7 @@ export const User = defineComponent({
     const ElRef = ref<FormInst | null>(null)
     type TargetContext = 'user' | 'phone' | 'reset' | 'register'
     const model = ref<TargetContext>('user')
+    const router = useRouter()
     const form = () => (
       <>
         <h1 class="mb-12px text-size-30px">
@@ -86,6 +90,9 @@ export const User = defineComponent({
                   let { success, msg } = await userNameLogin(formValue)
                   if (success) {
                     console.log('登录成功')
+                    useStore.token = 'xxxx----xx-x-x-x-x-x-'
+                    router.push(baseHome)
+                    console.log(useRouter)
                   } else {
                     console.log(msg)
                   }

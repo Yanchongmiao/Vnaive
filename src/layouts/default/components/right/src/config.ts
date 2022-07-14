@@ -1,4 +1,5 @@
 import { Locale } from '@/enum/locale'
+import { DropdownOption } from 'naive-ui'
 import { SelectMixedOption } from 'naive-ui/lib/select/src/interface'
 
 export const LangOptions = [
@@ -31,6 +32,9 @@ export const UserOptions = [
       {
         label: '租户A',
         key: '租户A',
+        onclick: () => {
+          console.log(1)
+        },
       },
       {
         label: '租户B',
@@ -41,6 +45,9 @@ export const UserOptions = [
   {
     label: '修改密码',
     key: '修改密码',
+    fn: () => {
+      console.log(1212)
+    },
   },
   {
     label: '个人中心',
@@ -49,6 +56,9 @@ export const UserOptions = [
   {
     label: '退出登录',
     key: '退出登录',
+    fn: (key: string | number, option: DropdownOption) => {
+      console.log(key, option)
+    },
   },
 ]
 export const ColorData = {

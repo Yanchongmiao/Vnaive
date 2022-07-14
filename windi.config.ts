@@ -1,6 +1,6 @@
 // windi.config.ts
 import { defineConfig } from 'vite-plugin-windicss'
-const range = (size, startAt = 1) =>
+const range = (size: number, startAt = 1) =>
   Array.from(Array(size).keys()).map((i) => i + startAt)
 export default defineConfig({
   attributify: {

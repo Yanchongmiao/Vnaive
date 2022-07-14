@@ -11,6 +11,15 @@ const login: Array<RouteRecordRaw> = [
       title: 'login',
     },
   },
+  {
+    path: '/logina',
+    name: 'logina',
+    component: () => import('@/views/test.vue'),
+    meta: {
+      icon: 'ion:grid-outline',
+      title: 'login1',
+    },
+  },
 ]
 const redirect = {
   path: '/redirect',

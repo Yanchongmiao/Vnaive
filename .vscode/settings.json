@@ -99,5 +99,6 @@
     "brotli",
     "sider",
     "pnpm"
-  ]
+  ],
+  "liveServer.settings.port": 5501
 }

@@ -10,4 +10,5 @@ declare interface ViteEnv {
   VITE_APP_SOURCEMAP: boolean
   VITE_APP_PREFIXCLS: string
   VITE_APP_MOCK: boolean
+  VITE_APP_ANALYSIS: boolean
 }

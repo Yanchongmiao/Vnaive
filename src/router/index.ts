@@ -1,6 +1,7 @@
 import { noAddTabs, onLoadGetPermission, permissionMode } from '@/config'
 import { RoleEnum } from '@/enum/route'
 import { themeStore } from '@/pinia/theme'
+import { useProfileStore } from '@/pinia/user'
 import { NProgressDone, NProgressStart } from '@/utils/NProgress'
 import { useTitle } from '@vueuse/core'
 import { App, nextTick } from 'vue'
@@ -33,15 +34,19 @@ export async function setRoute(app: App<Element>) {
   }
 }
 router.beforeEach(async (to, from, next) => {
+  const useStore = useProfileStore()
+
+  console.log(to)
+  if (to.fullPath !== '/login' && !useStore.token) {
+    next({ name: 'login' })
+  }
   if (!noAddTabs.includes(to.name as string) && !to.meta.hideTab) {
     addTabs(to)
   }
-  queueMicrotask(() => {
-    nextTick(() => {
-      const title = useTitle()
-      title.value =
-        (to.meta.title || 'App') + ' - ' + import.meta.env.VITE_APP_TITLE
-    })
+  nextTick(() => {
+    const title = useTitle()
+    title.value =
+      (to.meta.title || 'App') + ' - ' + import.meta.env.VITE_APP_TITLE
   })
   const store = themeStore()
   if (store.progressBar) {

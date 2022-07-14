@@ -16,13 +16,15 @@ import { importImgs } from './importImgs'
 import OptimizationPersist from 'vite-plugin-optimize-persist'
 import PkgConfig from 'vite-plugin-package-config'
 import { autoImport } from './autoImport'
+import visualizer from 'rollup-plugin-visualizer'
+
 export const createPlugin = (
   // eslint-disable-next-line no-undef
   viteEnv: ViteEnv,
   isBuild: boolean,
   command: string,
 ) => {
-  let { VITE_APP_TITLE, VITE_APP_MOCK } = viteEnv as any
+  let { VITE_APP_TITLE, VITE_APP_MOCK, VITE_APP_ANALYSIS } = viteEnv
   const vitePlugins: (Plugin | Plugin[])[] = [
     vue(),
     WindiCSS(),
@@ -54,5 +56,17 @@ export const createPlugin = (
   // 优化vite首次启动慢
   vitePlugins.push(PkgConfig())
   vitePlugins.push(OptimizationPersist())
+  // rollup打包分析插件
+  console.log('isBuild', isBuild)
+
+  if (isBuild && VITE_APP_ANALYSIS) {
+    vitePlugins.push(
+      visualizer({
+        open: true,
+        gzipSize: true,
+        brotliSize: true,
+      }),
+    )
+  }
   return vitePlugins
 }

@@ -55,8 +55,6 @@ export const transformRoute = (
       // info.name = item.path.slice(1).replaceAll('/', '-')
       info.name = item.path
       info.component = RenderComponent(item.component)
-      console.log(RenderComponent(item.component))
-
       if (item.children) {
         info.children = transformRoute(item.children)
       }

@@ -7,11 +7,11 @@ import path from 'path'
 export default ({ command, mode }: ConfigEnv) => {
   const root = process.cwd()
   const env = loadEnv(mode, root)
-  const isBuild = command === 'serve'
+  const isBuild = command === 'build'
   const ViteEvn = wrapperEnv(env)
   const {
     VITE_APP_PORT,
-    VITE_APP_LOG,
+    // VITE_APP_LOG,
     VITE_APP_BUILD,
     VITE_APP_SOURCEMAP,
     VITE_APP_HTTPS,
@@ -67,12 +67,12 @@ export default ({ command, mode }: ConfigEnv) => {
       sourcemap: VITE_APP_SOURCEMAP,
       brotliSize: false,
       chunkSizeWarningLimit: 2000,
-      terserOptions: {
-        compress: {
-          keepInfinity: true,
-          dropConsole: VITE_APP_LOG,
-        },
-      },
+      // terserOptions: {
+      //   compress: {
+      //     keepInfinity: true,
+      //     dropConsole: VITE_APP_LOG,
+      //   },
+      // },
     },
     base: './',
     server: {

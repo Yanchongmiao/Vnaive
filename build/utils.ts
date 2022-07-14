@@ -19,6 +19,7 @@ export const wrapperEnv = (envConf: Record<any>): ViteEnv => {
         'VITE_APP_LOG',
         'VITE_APP_OPEN',
         'VITE_APP_MOCK',
+        'VITE_APP_ANALYSIS',
       ].includes(envName)
     ) {
       env[envName] = transBoolean(envConf[envName])

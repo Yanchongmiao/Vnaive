@@ -99,7 +99,7 @@ module.exports = {
     'max-statements': [2, 50],
     // 坚定的 semicolon-less 拥护者
     semi: [2, 'never'],
-
+    'no-var': 'error',
     'no-alert': 0, //禁止使用alert confirm prompt
     'no-array-constructor': 2, //禁止使用数组构造器
     'no-bitwise': 0, //禁止使用按位运算符
