@@ -7,7 +7,6 @@ declare module 'vue' {
     ConfigSrcRedirect: typeof import('./../components/config/src/redirect.vue')['default']
     IconSrcIcon: typeof import('./../components/Icon/src/icon.vue')['default']
     IconSrcSvg: typeof import('./../components/Icon/src/svg.vue')['default']
-    NLayoutContent: typeof import('naive-ui')['NLayoutContent']
     SettingsCompSrcColorSelect: typeof import('./../components/settingsComp/src/ColorSelect.vue')['default']
     SettingsCompSrcPageInputNum: typeof import('./../components/settingsComp/src/PageInputNum.vue')['default']
     SettingsCompSrcPageLayout: typeof import('./../components/settingsComp/src/PageLayout.vue')['default']

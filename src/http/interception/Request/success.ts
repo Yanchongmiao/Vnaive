@@ -8,9 +8,11 @@ import { removePending } from './removeRequest'
 export const requestSuccess = async (request: RequestOptions) => {
   const { joinTime, withToken, ignoreRequest }: RequestCustom =
     request.requestOptions! //读取自定义配置
-  if (!request.requestOptions!.id) {
-    request.requestOptions!.id = uuid()
-  }
+  console.log('request', request)
+
+  // if (!request.requestOptions!.id) {
+  //   request.requestOptions!.id = uuid()
+  // }
 
   // eslint-disable-next-line no-unused-expressions
   joinTime &&

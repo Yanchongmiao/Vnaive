@@ -27,6 +27,7 @@ export class Vaxios {
     data?: Record<string, Object>,
     config?: RequestOptions,
   ): Promise<Type<T>> {
+    console.log('post', config)
     return this.require({
       url,
       method: 'post',

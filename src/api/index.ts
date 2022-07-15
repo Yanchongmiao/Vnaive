@@ -1,10 +1,11 @@
 import { http } from '@/http'
+import { RequestCustom } from '@/type/http'
 export const baseUrl = '/api'
 export const permissions = () => http.post(`${baseUrl}/users/permissions`) //获取路由 菜单接口//users/permissions
 export const newpermissions = () => http.post(`${baseUrl}/users/newpermissions`) //获取路由 菜单接口//users/permissions users/
-export const oldbackpermissions = (data: any, val: string) =>
+export const oldbackpermissions = (data: any, optinos: RequestCustom) =>
   http.post(`${baseUrl}/users/oldbackpermissions`, data, {
-    requestOptions: { ignoreMsg: val, ignoreRequest: false },
+    requestOptions: optinos,
   }) //获取路由 菜单接口//users/permissions users/oldbackpermissions
 export const newbackpermissions = () =>
   http.post(`${baseUrl}/users/newbackpermissions`) //获取路由 菜单接口//users/permissions users/oldbackpermissions

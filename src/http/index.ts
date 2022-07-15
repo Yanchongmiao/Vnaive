@@ -4,7 +4,7 @@ import { RequestOptions } from '@/type/http'
 import { Vaxios } from './axios'
 const data: RequestOptions = {
   timeout: 1000 * 10, // 10ms 超时
-  baseUrl: '', //基础接口地址 => 如果项目中会调不同的服务baseUrl不建议配置
+  baseUrl: '',
   headers: { 'Content-Type': ContentTypeEnum.JSON },
   // 如果是form-data格式
   // headers: { 'Content-Type': ContentTypeEnum.FORM_URLENCODED },

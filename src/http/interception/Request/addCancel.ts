@@ -23,5 +23,5 @@ export const setCancel = (request: RequestOptions, ignoreRequest: boolean) => {
   } else {
     url = request.url!
   }
-  setPending(url, pendingObj!.method, pendingObj!)
+  setPending(url, pendingObj!.method, pendingObj!, request)
 }
