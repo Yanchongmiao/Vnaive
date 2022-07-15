@@ -2,6 +2,16 @@ import { baseUrl, resultData } from '../index'
 export default [
   {
     url: `${baseUrl}/back/users/permissions`,
+    method: 'get',
+    timeout: 1000,
+    response: () =>
+      resultData({
+        route: [],
+        allAuth: [{ name: '按钮权限', id: 1 }],
+      }),
+  },
+  {
+    url: `${baseUrl}/back/users/permissions`,
     method: 'post',
     timeout: 2000,
     response: () =>

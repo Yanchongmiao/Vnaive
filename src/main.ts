@@ -3,5 +3,9 @@ import { createApp } from 'vue'
 // console.log(init(), testyyyy(), a, b)
 import App from './App.vue'
 import { bootstrom } from '@/bootstrap'
+import { http } from './http'
+// eslint-disable-next-line no-unused-expressions
+http
+
 const app = createApp(App)
 bootstrom(app)

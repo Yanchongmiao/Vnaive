@@ -1,6 +1,6 @@
 import { RoleEnum } from '@/enum/route'
 // 接口默认携带请求时间time字段
-export const axiosTimeName = 'SendTime'
+export const axiosTimeName = '_t'
 // 自定义token字段
 export const axiosTokenName = 'X-Access-Token'
 // tabs显示
@@ -32,6 +32,15 @@ export const RETRY_COUNT = 3
  * @retryErrorCode:  请求异常时，重试间隔时间
  */
 export const RETRY_INTERVAL = 1500
+/**
+ * @retryErrorCode:  是否开启错误重试
+ */
+export const RETRY_OPENRETRY = true
+/**
+ * @retryErrorCode:  是否携带token
+ */
+export const carryToken = true
+
 /**
 * @name 路由使用方式
   1. 正常路由信息，返回path、和组件名称,不返回组件地址 BACK
