@@ -1,4 +1,4 @@
-import { getSms } from '@/api'
+// import { getSms } from '@/api'
 import { ref } from 'vue'
 
 export const useGetCode = function (count = 60) {
@@ -8,7 +8,7 @@ export const useGetCode = function (count = 60) {
   const getPhoneCode = async function () {
     isGetPhone.value = true
     codeTest.value = `${current.value}秒后重新获取`
-    getSms()
+    // getSms()
     let inter = setInterval(() => {
       codeTest.value = --current.value + '秒后重新获取'
       if (current.value === 0) {
