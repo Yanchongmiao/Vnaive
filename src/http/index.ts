@@ -40,6 +40,6 @@ export const data: RequestOptions = {
   },
 }
 const createHttp = (request?: RequestOptions) => {
-  return new Vaxios(_.merge(data, request)).options()
+  return new Vaxios(_.merge(data, request))
 }
 export const http = createHttp()

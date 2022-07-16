@@ -1,7 +1,8 @@
 <script lang="tsx">
 // import { oldbackpermissions } from '@/api'
-// import { axiosRequestMap, cancelRequestMap } from '@/http/uiils'
 // import { uuid } from '@/utils/utils'
+
+import { axiosRequestMap, cancelRequestMap } from '@/http/cancel'
 
 export default defineComponent({
   name: 'Lo',
@@ -46,14 +47,14 @@ export default defineComponent({
       <>
         <button
           onClick={() => {
-            // console.log(axiosRequestMap)
+            console.log(axiosRequestMap)
           }}
         >
           1212
         </button>
         <button
           onClick={() => {
-            // console.log(cancelRequestMap)
+            console.log(cancelRequestMap)
           }}
         >
           xxx

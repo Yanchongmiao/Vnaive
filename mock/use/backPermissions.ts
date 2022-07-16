@@ -3,7 +3,7 @@ export default [
   {
     url: `${baseUrl}/back/users/permissions`,
     method: 'get',
-    timeout: 1000,
+    timeout: 3000,
     response: () =>
       resultData({
         route: [],
@@ -13,7 +13,7 @@ export default [
   {
     url: `${baseUrl}/back/users/permissions`,
     method: 'post',
-    timeout: 2000,
+    timeout: 4000,
     response: () =>
       resultData({
         route: [

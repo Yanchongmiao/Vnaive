@@ -20,13 +20,13 @@ export interface RequestCustom {
   //查找某条请求时根据id查找
   id?: string
   // 是否重试
-  readonly openRetry: boolean
+  readonly openRetry?: boolean
   // 重试次数
-  readonly count: number
+  readonly count?: number
   // 重试间隔
   readonly interval?: number
   // 重试第几次
-  retryCount: number
+  retryCount?: number
 }
 /**
  *  基础配置项+自定义配置项 requestOptions
@@ -48,14 +48,8 @@ export interface RequestOptions extends AxiosRequestConfig {
 /**
  *  记录当前请求约束字段
  * **/
-export interface PendingType<T = any, P = any> {
-  url: string
-  data?: T
-  params?: P
-  method: Method
+export interface PendingType extends RequestOptions {
   cancel: (msg?: string) => void
-  ignoreMsg?: string
-  [key: string]: any
 }
 /**
  *  请求成功返回结果
@@ -77,3 +71,6 @@ export interface ErrorInfo {
   success: boolean
   response?: Object
 }
+// export type CustomRequired<T, K extends keyof T> = {
+//   [P in K]: T[P]
+// } & Omit<T, K>

@@ -1,33 +1,48 @@
-import { axiosTimeName, axiosTokenName, RETRY_COUNTCODE } from '@/config'
+import {
+  axiosAddTime,
+  axiosTimeName,
+  axiosTokenName,
+  RETRY_COUNTCODE,
+} from '@/config'
 import { RequestEnum } from '@/enum/axios'
-import { ErrorInfo, RequestCustom, RequestOptions } from '@/type/http'
+import { Expand, SetOptional } from '@/type'
+import { ErrorInfo, RequestOptions, resultType } from '@/type/http'
 import { createErrorMsg } from '@/utils/message'
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios'
+import { uuid } from '@/utils/utils'
+type Type<T> = Expand<resultType<T>>
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from 'axios'
+import { addCancel } from './addCancel'
+import { cancelPending, deletePending } from './cancel'
 import { TipMsg } from './Tips'
 export class Vaxios {
-  requestOptions: RequestOptions
-  AxiosInstance: AxiosInstance
+  private requestOptions: RequestOptions
+  private AxiosInstance: AxiosInstance
   constructor(requestOptions: RequestOptions) {
     this.requestOptions = requestOptions
     this.AxiosInstance = axios.create(requestOptions)
     this.interceptors() //this.AxiosInstance
   }
   //   拦截器axiosInstance: AxiosInstance
-  interceptors() {
+  private interceptors() {
     this.initRequestInterceptors()
     this.initResponseInterceptors()
   }
   //   请求拦截器
-  initRequestInterceptors() {
+  private initRequestInterceptors() {
     this.AxiosInstance.interceptors.request.use(
-      async (request: any) => {
-        const { joinTime, withToken }: RequestCustom = request.requestOptions
-        if (
-          joinTime &&
-          [RequestEnum.GET, RequestEnum.DELETE].includes(
-            request.method as RequestEnum,
-          )
-        ) {
+      async (request: AxiosRequestConfig) => {
+        // .log('request', request)
+        const { requestOptions } = request as any
+        const { joinTime, withToken, ignoreRequest } = requestOptions
+        if (!requestOptions.id) {
+          requestOptions.id = uuid()
+        }
+        if (joinTime && axiosAddTime.includes(request.method as RequestEnum)) {
           try {
             Reflect.set(request.params, axiosTimeName, Number(new Date()))
           } catch {
@@ -36,8 +51,12 @@ export class Vaxios {
           }
         }
         if (withToken) {
-          Reflect.set(request.headers, axiosTokenName, 'set token')
+          Reflect.set(request.headers!, axiosTokenName, 'set token')
         }
+        if (ignoreRequest) {
+          cancelPending(request as RequestOptions)
+        }
+        addCancel(request as RequestOptions)
         return request
       },
       async (error: AxiosError) => {
@@ -47,10 +66,11 @@ export class Vaxios {
     )
   }
   //   响应拦截器
-  initResponseInterceptors() {
+  private initResponseInterceptors() {
     this.AxiosInstance.interceptors.response.use(
       async (response: AxiosResponse) => {
         const config: RequestOptions = response.config as any
+        deletePending(config)
         if (config.requestOptions?.isReturnNativeResponse) {
           //是否需要对原生头处理
           return response
@@ -69,9 +89,10 @@ export class Vaxios {
         if (axios.isCancel(error)) {
           const err: ErrorInfo = {
             status: 4004,
-            statusText: error.message,
+            statusText: error.message || 'error',
             success: false,
           }
+          //   deletePending(error.config as RequestOptions)
           return Promise.reject(err)
         }
         // 2、
@@ -114,34 +135,161 @@ export class Vaxios {
             success: false,
           }
           createErrorMsg({ title: '系统异常', content: '请求超时' })
+          deletePending(config)
           return Promise.reject(ignore)
         } else if (error.config) {
           TipMsg(error)
           const requestOptions: any = error.config
           const result: ErrorInfo = {
             status: error.response!.status,
-            statusText: error.response!.statusText,
+            statusText: error.response!.statusText || '??',
             success: false,
             response: requestOptions.requestOptions.isReturnNativeResponse
               ? error.response
               : {},
           }
-          //   removePending(error.config)
+          deletePending(config)
           return Promise.reject(result)
         }
         return Promise.reject(error)
       },
     )
   }
-  options() {
-    this.AxiosInstance.request({
-      url: '/a1pi/1back/users/permissions',
-      method: 'GET',
+  /**
+   * @description 请求主体
+   **/
+  require<T = any>(
+    config: SetOptional<RequestOptions, 'requestOptions'>,
+  ): Promise<T> {
+    return this.AxiosInstance.request({
+      ...config,
     })
-    this.AxiosInstance.request({
-      url: '/a1pi1/back/users/permissions',
+  }
+  /**
+   * @url string
+   * @params {}
+   * @config RequestOptions
+   **/
+  get<T = any>(
+    url: string,
+    params?: Record<string, Object>,
+    config?: RequestOptions,
+  ): Promise<Type<T>> {
+    return this.require({ url, method: 'get', params, ...config })
+  }
+
+  /**
+   * @url string
+   * @params {}
+   * @config RequestOptions
+   **/
+  head<T = any>(
+    url: string,
+    params?: Record<string, Object>,
+    config?: RequestOptions,
+  ): Promise<Type<T>> {
+    return this.require({
+      url,
+      method: 'head',
+      params,
+      ...config,
+    })
+  }
+  /**
+   * @url string
+   * @params {}
+   * @config RequestOptions
+   **/
+  options<T = any>(
+    url: string,
+    params?: Record<string, Object>,
+    config?: RequestOptions,
+  ): Promise<Type<T>> {
+    return this.require({
+      url,
+      method: 'options',
+      params,
+      ...config,
+    })
+  }
+  /**
+   * @url string
+   * @params {}
+   * @config RequestOptions
+   **/
+  delete<T = any>(
+    url: string,
+    params?: Record<string, Object>,
+    config?: RequestOptions,
+  ): Promise<Type<T>> {
+    return this.require({
+      url,
+      method: 'delete',
+      params,
+      ...config,
+    })
+  }
+  /**
+   * @url string
+   * @params {}
+   * @config RequestOptions
+   **/
+  post<T = any>(
+    url: string,
+    data?: Record<string, Object>,
+    config?: RequestOptions,
+  ): Promise<Type<T>> {
+    return this.require({ url, method: 'post', data, ...config })
+  }
+  /**
+   * @url string
+   * @params {}
+   * @config RequestOptions
+   **/
+  put<T = any>(
+    url: string,
+    data?: Record<string, Object>,
+    config?: RequestOptions,
+  ): Promise<Type<T>> {
+    return this.require({
+      url,
+      method: 'put',
+      data,
+      ...config,
+    })
+  }
+  /**
+   * @url string
+   * @params {}
+   * @config RequestOptions
+   **/
+  patch<T = any>(
+    url: string,
+    data?: Record<string, Object>,
+    config?: RequestOptions,
+  ): Promise<Type<T>> {
+    return this.require({
+      url,
+      method: 'patch',
+      data,
+      ...config,
+    })
+  }
+  /**
+   * @url string
+   * @params {}
+   * @config RequestOptions
+   **/
+  uploadFile<T = FormData>(
+    url: string,
+    data?: FormData,
+    config?: RequestOptions,
+  ): Promise<Type<T>> {
+    return this.require({
+      url,
       method: 'post',
-      data: { a: 1 },
+      data,
+      ...config,
     })
   }
 }
