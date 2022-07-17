@@ -57,8 +57,6 @@ export const createPlugin = (
   vitePlugins.push(PkgConfig())
   vitePlugins.push(OptimizationPersist())
   // rollup打包分析插件
-  console.log('isBuild', isBuild)
-
   if (isBuild && VITE_APP_ANALYSIS) {
     vitePlugins.push(
       visualizer({

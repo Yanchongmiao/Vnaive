@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 
+src/utils/autoTool
 # Editor directories and files
 !.vscode/extensions.json
 .idea
