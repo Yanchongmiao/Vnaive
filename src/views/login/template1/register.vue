@@ -10,7 +10,7 @@ import {
   NFormItem,
   NInput,
 } from 'naive-ui'
-import { PasswordRules, UserNameRules } from './src/data'
+import { PasswordRules, UserNameRules } from '../src/config'
 // import { register } from '@/api'
 export default defineComponent({
   name: 'Register',

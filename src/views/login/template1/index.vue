@@ -1,108 +1,49 @@
-<script lang="tsx">
-import login2Img from '@/assets/images/login2Img.png'
-import logo from '@/assets/images/title.png'
-import loginLogo from '@/assets/images/login_logo.png'
-import { GlassesOutline, Glasses } from '@vicons/ionicons5'
-import {
-  NButton,
-  NForm,
-  NFormItemRow,
-  NIcon,
-  NInput,
-  NTabPane,
-  NTabs,
-} from 'naive-ui'
-export default defineComponent({
-  name: 'Login2',
-  setup() {
-    console.log(1212)
-    return () => (
-      <div class="loginBox w-1/1 h-1/1 flex">
-        <div
-          class="leftBox w-2/3 bg-blue-400 flex items-center justify-center"
-          style={{ backgroundColor: '#4393fa' }}
-        >
-          <div class="absolute left-0 top-0 h-76px max-w-1/1 w-800px titBox mt-100px pl-20 box-border flex items-center">
-            <img src={logo} alt="" class="h-40px" />
-          </div>
-          <img src={login2Img} alt="" />
-        </div>
-        <div class="loginInfoBox w-1/3 flex items-center justify-center relative overflow-hidden">
-          <div
-            class="edition absolute top-3 -right-25px px-30px py-4px  text-cool-gray-50 transform rotate-45 select-none"
-            style={{ backgroundColor: '#fec12f' }}
-          >
-            V 1.0.0
-          </div>
-          <div class="contentBox">
-            <img src={loginLogo} alt="" class="w-400px h-36px" />
-            <div>
-              <NTabs
-                class="card-tabs"
-                default-value="signin"
-                justify-content="space-evenly"
-                size="large"
-                animated
-                style="margin: 0 -4px"
-                pane-style="padding-left: 4px; padding-right: 4px; box-sizing: border-box;"
-              >
-                <NTabPane name="signin" tab="账号密码登录">
-                  <NForm label-placement="left">
-                    <NFormItemRow>
-                      <NInput placeholder="请输入账号"></NInput>
-                    </NFormItemRow>
-                    <NFormItemRow>
-                      <NInput
-                        type="password"
-                        show-password-on="click"
-                        placeholder="请输入密码"
-                        maxlength={8}
-                        v-slots={{
-                          'password-visible-icon': () => (
-                            <NIcon size={16} component={GlassesOutline} />
-                          ),
-                          'password-invisible-icon': () => (
-                            <NIcon size={16} component={Glasses} />
-                          ),
-                        }}
-                      ></NInput>
-                    </NFormItemRow>
-                  </NForm>
-                  <NButton type="info" block>
-                    登录
-                  </NButton>
-                </NTabPane>
-                <NTabPane name="signup" tab="注册">
-                  <NForm label-placement="left">
-                    <NFormItemRow>
-                      <NInput placeholder="请输入手机号"></NInput>
-                    </NFormItemRow>
-                    <NFormItemRow>
-                      <NInput placeholder="请输入短信验证码"></NInput>
-                      <NButton type="info" strong class="ml-20px w-120px">
-                        获取验证码
-                      </NButton>
-                    </NFormItemRow>
-                  </NForm>
-                  <NButton type="info" block>
-                    登录
-                  </NButton>
-                </NTabPane>
-              </NTabs>
-            </div>
-          </div>
-        </div>
+<template>
+  <div class="login w-1/1 h-1/1 flex">
+    <div class="bg flex flex-col py-50px w-1/2">
+      <div
+        class="leftHeaderText flex justify-center animate__animated animate__bounceInLeft w-7/10 h-3/10"
+      >
+        <img :src="logo" alt="" srcset="" class="w-48px h-48px" />
+        <p class="m-0 text-size-24px mt-8px ml-14px text-center text-white">
+          <b>{{ title }}</b>
+        </p>
       </div>
-    )
-  },
-})
+      <div
+        class="leftLogo flex flex-col animate__animated animate__bounceInLeft w-86/100 justify-center items-center"
+      >
+        <img :src="loginBoxBg" alt="" srcset="" class="w-368px h-190px" />
+        <br />
+        <br />
+        <p class="m-0 text-size-24px text-white">
+          <b>开箱即用的中后台管理系统</b>
+        </p>
+      </div>
+    </div>
+    <div
+      class="LoginFormBox animate__animated animate__bounceInRight flex flex-col flex-1"
+    >
+      <div class="w-7/10 h-1/3"></div>
+      <div class="box w-400px h-2/5 ml-50px">
+        <h1 class="mb-12px text-size-30px"></h1>
+        <user />
+      </div>
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+import loginBoxBg from '@/assets/images/login-box-bg.svg'
+import logo from '@/assets/images/logo.png'
+import User from './user.vue'
+const title = import.meta.env.VITE_APP_TITLE
 </script>
 <style lang="less" scoped>
-.titBox {
-  background: linear-gradient(
-    270deg,
-    rgba(67, 147, 250, 0.5),
-    rgba(133, 182, 252, 0.5)
-  );
+.login {
+  .bg {
+    background-image: url(@/assets/images/login-bg.svg);
+    background-size: auto 100%;
+    background-position: 100%;
+    background-repeat: no-repeat;
+  }
 }
 </style>

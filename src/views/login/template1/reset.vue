@@ -1,39 +1,41 @@
 <script lang="tsx">
 import { defineComponent, reactive, ref } from 'vue'
 import { FormInst, NButton, NForm, NFormItem, NInput } from 'naive-ui'
-import { PhoneRules } from './src/data'
-import { useGetCode } from './src/getCode'
-import { userPhoneLogin } from '@/api'
+
+import { retrievePass } from '@/api'
+import { useGetCode } from '../src/useLogin'
+import { userRules } from '../src/config'
 export default defineComponent({
-  name: 'Phone',
+  name: 'Reaet',
   emits: ['gx'],
   setup(props, { emit }) {
     const formValue = reactive({
-      phone: null,
+      userName: null,
       smsCode: null,
     })
     const ElRef = ref<FormInst | null>(null)
-    const { isGetPhone, getPhoneCode, codeTest } = useGetCode(10)
+    const { isGetPhone, getPhoneCode, codeTest } = useGetCode(15)
     return () => (
       <>
         <h1 class="mb-12px text-size-30px">
-          <b>手机号登录</b>
+          <b>重置密码</b>
         </h1>
         <NForm
           ref={ElRef}
           model={formValue}
-          rules={PhoneRules}
+          rules={userRules}
           label-placement="left"
         >
-          <NFormItem path="phone">
+          <NFormItem path="userName">
             <NInput
-              placeholder="请输入手机号"
-              v-model:value={formValue.phone}
+              placeholder="请输入用户名"
+              v-model:value={formValue.userName}
             />
           </NFormItem>
           <NFormItem path="smsCode">
             <NInput
               v-model:value={formValue.smsCode}
+              show-password-on="click"
               placeholder="请输入验证码"
             />
             <NButton disabled={isGetPhone.value} onClick={getPhoneCode}>
@@ -50,9 +52,9 @@ export default defineComponent({
               if (!errors) {
                 console.log('ok')
                 try {
-                  let { success, msg } = await userPhoneLogin(formValue)
+                  let { success, msg } = await retrievePass(formValue)
                   if (success) {
-                    console.log('登录成功')
+                    console.log('重置密码成功')
                   } else {
                     console.log(msg)
                   }
@@ -67,11 +69,12 @@ export default defineComponent({
             })
           }}
         >
-          登录
+          重置
         </NButton>
         <NButton
           class="mt-10px w-1/1"
           onClick={() => {
+            console.log('11')
             emit('gx', 'user')
           }}
         >
