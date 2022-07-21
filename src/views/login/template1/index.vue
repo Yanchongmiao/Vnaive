@@ -26,7 +26,7 @@
       <div class="w-7/10 h-1/3"></div>
       <div class="box w-400px h-2/5 ml-50px">
         <h1 class="mb-12px text-size-30px"></h1>
-        <user />
+        <User />
       </div>
     </div>
   </div>
