@@ -1,19 +1,23 @@
 <script lang="tsx">
 import { defineComponent, onMounted, reactive, ref } from 'vue'
-import { FormInst, NButton, NForm, NFormItem, NInput, NSpin } from 'naive-ui'
+import { FormInst, NButton, NForm } from 'naive-ui' //NFormItem, NInput, NSpin
 import Register from './register.vue'
 import Phone from './phone.vue'
 import Reset from './reset.vue'
-import { getPicValidateCode, userNameLogin } from '@/api'
+import { userNameLogin } from '@/api'
 import { useProfileStore } from '@/pinia/user'
 import { baseHome } from '@/config'
 import { userRules } from '../src/config'
 import { TargetContext } from '../src/type'
 import userName from '../src/conponents/userName.vue'
+import userPassWord from '../src/conponents/passWord.vue'
+import userPictureCode from '../src/conponents/pictureCode.vue'
 export default defineComponent({
   name: 'User',
   components: {
     userName,
+    userPassWord,
+    userPictureCode,
   },
   setup() {
     const formValue = reactive({
@@ -21,12 +25,6 @@ export default defineComponent({
       password: 'aA121212a!',
       pictureCode: 1111,
     })
-    const picCode = ref<string>('')
-    const getPicCode = async () => {
-      picCode.value = ''
-      let { data } = await getPicValidateCode()
-      picCode.value = data.img
-    }
     const ElRef = ref<FormInst | null>(null)
     const model = ref<TargetContext>('user')
     const router = useRouter()
@@ -43,7 +41,9 @@ export default defineComponent({
           rules={userRules}
           label-placement="left"
         >
-          <userName v-model:value={formValue.userName} />1
+          <userName v-model:value={formValue.userName} />
+          <userPassWord v-model:value={formValue.password} />
+          <userPictureCode v-model:value={formValue.pictureCode} />
           {/*
            <NFormItem path="userName">
             <NInput
@@ -52,6 +52,7 @@ export default defineComponent({
             />
           </NFormItem>
           */}
+          {/*
           <NFormItem path="password">
             <NInput
               // type="password"
@@ -60,14 +61,14 @@ export default defineComponent({
               placeholder="请输入密码"
             />
           </NFormItem>
+          */}
+          {/*
           <NFormItem path="pictureCode">
-            {/*
             <NInput
               v-model:value={formValue.pictureCode}
               show-password-on="click"
               placeholder="请输入验证码"
             />
-            */}
             <div class={'flex items-center w-130px justify-center'}>
               {picCode.value ? (
                 <img
@@ -80,7 +81,7 @@ export default defineComponent({
                 <NSpin></NSpin>
               )}
             </div>
-          </NFormItem>
+          </NFormItem> */}
         </NForm>
         <div class="flex justify-between">
           <div></div>
@@ -131,7 +132,7 @@ export default defineComponent({
       </>
     )
     onMounted(() => {
-      getPicCode()
+      // getPicCode()
     })
     return () => (
       <>
