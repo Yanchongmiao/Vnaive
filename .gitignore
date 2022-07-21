@@ -22,4 +22,6 @@ dist-ssr
 *.sln
 *.sw?
 .eslintignore
-src/utils/autoTool/*
+# file
+src/config/auto-import.d.ts
+src/config/components.d.ts

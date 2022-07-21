@@ -5,7 +5,7 @@ export const componentTS = () => {
     resolvers: [NaiveUiResolver()],
     directoryAsNamespace: true,
     extensions: ['vue'],
-    dts: 'src/utils/autoTool/components.d.ts',
+    dts: 'src/config/components.d.ts',
     // dts: false,
     dirs: ['src/components'],
     deep: true,
