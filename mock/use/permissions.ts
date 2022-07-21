@@ -217,7 +217,14 @@ export default [
     timeout: 2000,
     response: () =>
       resultData({
-        img: Random.image('130x34'),
+        // img: Random.image('130x34', Mock.mock({ regexp: /\w{4}/ }).regexp),
+        // imga: Mock.Random.dataImage('130x34', 'xxxxx'),
+        img: Mock.Random.image(
+          '130x34',
+          Mock.Random.color(), //背景颜色
+          Mock.Random.color(), //字体颜色
+          Mock.mock({ regexp: /\w{4}/ }).regexp,
+        ),
       }),
   },
   {
