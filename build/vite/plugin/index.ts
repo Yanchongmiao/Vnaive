@@ -9,7 +9,7 @@ import { componentTS } from './componen'
 import { icons } from './icons'
 import { html } from './html'
 import { mock } from './mock'
-import { restart } from './restart'
+// import { restart } from './restart'
 import { jsx } from './jsx'
 import { setupName } from './setupName'
 import { importImgs } from './importImgs'
@@ -46,7 +46,7 @@ export const createPlugin = (
   // eslint-disable-next-line no-unused-expressions
   VITE_APP_MOCK && vitePlugins.push(mock(isBuild, command))
   // restart vite-plugin-restart
-  vitePlugins.push(restart())
+  // vitePlugins.push(restart())
   // jsx插件
   vitePlugins.push(jsx())
   // setup name
@@ -57,8 +57,6 @@ export const createPlugin = (
   vitePlugins.push(PkgConfig())
   vitePlugins.push(OptimizationPersist())
   // rollup打包分析插件
-  console.log('isBuild', isBuild)
-
   if (isBuild && VITE_APP_ANALYSIS) {
     vitePlugins.push(
       visualizer({

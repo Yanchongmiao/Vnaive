@@ -17,6 +17,7 @@ export enum RequestEnum {
   DELETE = 'delete',
   HEAD = 'head',
   PATCH = 'patch',
+  OPTIONS = 'options',
 }
 export const methodData: Array<RequestEnum> = [
   RequestEnum.GET,

@@ -22,3 +22,6 @@ dist-ssr
 *.sln
 *.sw?
 .eslintignore
+# file
+src/config/auto-import.d.ts
+src/config/components.d.ts

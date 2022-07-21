@@ -10,8 +10,8 @@ import {
   NFormItem,
   NInput,
 } from 'naive-ui'
-import { PasswordRules, UserNameRules } from './src/data'
-import { register } from '@/api'
+import { PasswordRules, UserNameRules } from '../src/config'
+// import { register } from '@/api'
 export default defineComponent({
   name: 'Register',
   emits: ['gx'],
@@ -106,12 +106,12 @@ export default defineComponent({
               if (!errors) {
                 console.log('ok')
                 try {
-                  let { data: _a, success, msg } = await register('')
-                  if (success) {
-                    console.log('注册成功')
-                  } else {
-                    console.log(msg)
-                  }
+                  // let { data: _a, success, msg } = await register('')
+                  // if (success) {
+                  //   console.log('注册成功')
+                  // } else {
+                  //   console.log(msg)
+                  // }
                 } catch {
                   //
                 }

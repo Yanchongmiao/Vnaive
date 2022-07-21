@@ -26,7 +26,7 @@
       <div class="w-7/10 h-1/3"></div>
       <div class="box w-400px h-2/5 ml-50px">
         <h1 class="mb-12px text-size-30px"></h1>
-        <user />
+        <User />
       </div>
     </div>
   </div>
@@ -34,8 +34,7 @@
 <script setup lang="ts">
 import loginBoxBg from '@/assets/images/login-box-bg.svg'
 import logo from '@/assets/images/logo.png'
-// import user from './user.vue'
-import { User } from './user'
+import User from './user.vue'
 const title = import.meta.env.VITE_APP_TITLE
 </script>
 <style lang="less" scoped>

@@ -5,16 +5,16 @@ const login: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/login/index.vue'),
+    component: () => import('@/views/login/template1/index.vue'),
     meta: {
       icon: 'ion:grid-outline',
       title: 'login',
     },
   },
   {
-    path: '/logina',
-    name: 'logina',
-    component: () => import('@/views/test.vue'),
+    path: '/login1',
+    name: 'login1',
+    component: () => import('@/views/login/template2/index.vue'),
     meta: {
       icon: 'ion:grid-outline',
       title: 'login1',

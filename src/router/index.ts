@@ -35,11 +35,9 @@ export async function setRoute(app: App<Element>) {
 }
 router.beforeEach(async (to, from, next) => {
   const useStore = useProfileStore()
-
-  console.log(to)
-  if (to.fullPath !== '/login' && !useStore.token) {
-    next({ name: 'login' })
-  }
+  // if (to.fullPath !== '/login' && !useStore.token) {
+  //   next({ name: 'login' })
+  // }
   if (!noAddTabs.includes(to.name as string) && !to.meta.hideTab) {
     addTabs(to)
   }
